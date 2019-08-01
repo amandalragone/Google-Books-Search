@@ -16,23 +16,9 @@ class Books extends Component {
     synopsis: ""
   };
 
-  componentDidMount() {
-    this.loadBooks();
-  }
-
-  loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
+  // componentDidMount() {
+  //   this.loadBooks();
+  // }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -45,7 +31,7 @@ class Books extends Component {
     event.preventDefault();
     if (this.state.title) {
 
-      axios.get("/api/book/search/" + this.state.title).then(response => {
+      axios.get("/api/books/search/" + this.state.title).then(response => {
         this.setState({
           title: "",
           books: response.data

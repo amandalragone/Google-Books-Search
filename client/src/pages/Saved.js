@@ -9,9 +9,9 @@ class Detail extends Component {
     book: {}
   };
 
-  componentDidMount() {
-    API.getBook(this.props.match.params.id).then(res => this.setState({ book: res.data}))
-  }
+  // componentDidMount() {
+  //   API.getBook(this.props.match.params.id).then(res => this.setState({ book: res.data}))
+  // }
 
   render() {
     return (
@@ -31,7 +31,7 @@ class Detail extends Component {
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
+            <Link to="/">← Back to Search</Link>
           </Col>
         </Row>
       </Container>
