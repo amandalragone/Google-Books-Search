@@ -9,7 +9,6 @@ const app = express();
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -19,8 +18,14 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/reactgooglebookslist";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines",
+  {
+    useCreateIndex: true,
+    useNewUrlParser: true
+  }
+);
+
 
 // Start the API server
 app.listen(PORT, function() {
